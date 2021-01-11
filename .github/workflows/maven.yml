@@ -46,12 +46,12 @@ jobs:
           password: ${{ secrets.PWD }}
           port: ${{ secrets.HOSTPORT }}
           script: |
-            docker stop $(docker ps --filter ancestor=${{ secrets.REGISTRY }} -q)
-            docker rm -f $(docker ps -a --filter ancestor=${{ secrets.REGISTRY }}:latest -q)
-            docker rmi -f $(docker images  ${{ secrets.REGISTRY }}:latest -q)
-            docker login --username=${{ secrets.ALIYUNUSERNAME }} --password ${{ secrets.ALIYUNPWD }} registry.cn-shanghai.aliyuncs.com
-            docker pull ${{ secrets.REGISTRY }}:latest
-            docker run -d -p 8080:8080 ${{ secrets.REGISTRY }}:latest
+            docker stop $(docker ps --filter ancestor= registry.cn-shanghai.aliyuncs.com/github_ci/github_ci_test -q)
+            docker rm -f $(docker ps -a --filter ancestor= registry.cn-shanghai.aliyuncs.com/github_ci/github_ci_test:latest -q)
+            docker rmi -f $(docker images registry.cn-shanghai.aliyuncs.com/github_ci/github_ci_test:latest -q)
+            docker login --username=18690432061 --password 123.qwe123 registry.cn-shanghai.aliyuncs.com
+            docker pull  registry.cn-shanghai.aliyuncs.com/github_ci/github_ci_test:latest
+            docker run -d -p 8080:8080 registry.cn-shanghai.aliyuncs.com/github_ci/github_ci_test:latest
 # 上面暴露出了 8060端口, 填你项目端口即可 (没有端口可忽略)
 
 
