@@ -16,6 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestController {
     @GetMapping("/hello")
     public ResponseEntity<String> testHello(){
-        return ResponseEntity.ok("test update");
+        return ResponseEntity.ok("test update-v-0.1");
     }
 }
