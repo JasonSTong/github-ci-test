@@ -46,10 +46,10 @@ jobs:
           password: ${{ secrets.PWD }}
           port: ${{ secrets.HOSTPORT }}
           script: |
+            docker login --username=${{ secrets.ALIYUNUSERNAME }} --password ${{ secrets.ALIYUNPWD }} registry.cn-shanghai.aliyuncs.com
             docker stop $(docker ps --filter ancestor=${{ secrets.REGISTRY }} -q)
             docker rm -f $(docker ps -a --filter ancestor=${{ secrets.REGISTRY }}:latest -q)
             docker rmi -f $(docker images  ${{ secrets.REGISTRY }}:latest -q)
-            docker login --username=${{ secrets.ALIYUNUSERNAME }} --password ${{ secrets.ALIYUNPWD }} registry.cn-shanghai.aliyuncs.com
             docker pull ${{ secrets.REGISTRY }}:latest
             docker run -d -p 8080:8080 ${{ secrets.REGISTRY }}:latest
 # 上面暴露出了 8060端口, 填你项目端口即可 (没有端口可忽略)
