@@ -41,10 +41,10 @@ jobs:
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.HOSTUSERNAME }}
-          password: ${{ secrets.PWD }}
-          port: ${{ secrets.HOSTPORT }}
+          host: 47.96.16.194
+          username: root
+          password: Ct981228
+          port: 22
           script: |
             docker stop $(docker ps --filter ancestor= registry.cn-shanghai.aliyuncs.com/github_ci/github_ci_test -q)
             docker rm -f $(docker ps -a --filter ancestor= registry.cn-shanghai.aliyuncs.com/github_ci/github_ci_test:latest -q)
