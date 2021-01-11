@@ -46,8 +46,8 @@ jobs:
           password: Ct981228
           port: 22
           script: |
-            docker stop $(docker ps --filter ancestor= registry.cn-shanghai.aliyuncs.com/github_ci/github_ci_test -q)
-            docker rm -f $(docker ps -a --filter ancestor= registry.cn-shanghai.aliyuncs.com/github_ci/github_ci_test:latest -q)
+            docker stop $(docker ps --filter ancestor=registry.cn-shanghai.aliyuncs.com/github_ci/github_ci_test -q)
+            docker rm -f $(docker ps -a --filter ancestor=registry.cn-shanghai.aliyuncs.com/github_ci/github_ci_test:latest -q)
             docker rmi -f $(docker images registry.cn-shanghai.aliyuncs.com/github_ci/github_ci_test:latest -q)
             docker login --username=18690432061 --password 123.qwe123 registry.cn-shanghai.aliyuncs.com
             docker pull  registry.cn-shanghai.aliyuncs.com/github_ci/github_ci_test:latest
