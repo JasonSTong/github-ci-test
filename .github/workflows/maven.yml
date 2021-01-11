@@ -41,17 +41,17 @@ jobs:
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ aliyun.HOST }}
-          username: ${{ aliyun.HOSTUSERNAME }}
-          password: ${{ aliyun.PWD }}
-          port: ${{ aliyun.HOSTPORT }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.HOSTUSERNAME }}
+          password: ${{ secrets.PWD }}
+          port: ${{ secrets.HOSTPORT }}
           script: |
-            docker stop $(docker ps --filter ancestor=${{ aliyun.REGISTRY }} -q)
-            docker rm -f $(docker ps -a --filter ancestor=${{ aliyun.REGISTRY }}:latest -q)
-            docker rmi -f $(docker images  ${{ aliyun.REGISTRY }}:latest -q)
-            docker login --username=${{ aliyun.ALIYUNUSERNAME }} --password ${{ aliyun.ALIYUNPWD }} registry.cn-shanghai.aliyuncs.com
-            docker pull ${{ aliyun.REGISTRY }}:latest
-            docker run -d -p 8080:8080 ${{ aliyun.REGISTRY }}:latest
+            docker stop $(docker ps --filter ancestor=${{ secrets.REGISTRY }} -q)
+            docker rm -f $(docker ps -a --filter ancestor=${{ secrets.REGISTRY }}:latest -q)
+            docker rmi -f $(docker images  ${{ secrets.REGISTRY }}:latest -q)
+            docker login --username=${{ secrets.ALIYUNUSERNAME }} --password ${{ secrets.ALIYUNPWD }} registry.cn-shanghai.aliyuncs.com
+            docker pull ${{ secrets.REGISTRY }}:latest
+            docker run -d -p 8080:8080 ${{ secrets.REGISTRY }}:latest
 # 上面暴露出了 8060端口, 填你项目端口即可 (没有端口可忽略)
 
 
