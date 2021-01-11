@@ -1,5 +1,6 @@
 package cn.ha5fun.testgithub.demo.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TestController {
     @GetMapping("/hello")
-    public String testHello(){
-        return "hello";
+    public ResponseEntity<String> testHello(){
+        return ResponseEntity.ok("hello");
     }
 }
